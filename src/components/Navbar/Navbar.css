@@ -1,0 +1,288 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0px; 
+    padding: 0 20px;
+}
+.logo {
+    width: 200px;
+    height: 100px;
+    object-fit: cover; 
+    object-position: center;
+    overflow: hidden;
+    margin-right: auto;
+}
+.nav-menu{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 60px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.nav-menu a{
+    text-decoration: none;
+    color: inherit;
+}
+.nav-menu a:hover {
+    background: linear-gradient(270deg , #DF8908 10%, #B415FF 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 0.5s;
+    /* transform: scale(1.2); */
+}
+.nav-connect{
+    padding: 15px 30px;
+    border-radius: 25px;
+    background: linear-gradient(267deg, #DA7C25 0.36%, #B923E1 102.06%);
+    font-size: 17px;
+    cursor: pointer;
+    margin-left: 100px;
+    transition: 0.5s;
+}
+.nav-connect a{
+    text-decoration: none !important; 
+    color: inherit;
+    display: inline-block;
+}
+.nav-connect:hover{
+    transform: scale(1.05);
+}
+.nav-mob-open{
+    display: none;
+}
+.nav-mob-close{
+    display: none;
+}
+@media (max-width: 768px) {
+    .navbar{
+        padding: 0 20px;
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        margin: 0;
+    }
+    .nav-connect{
+        display: none;
+    }
+    .nav-mob-open{
+        display: block;
+        position: fixed;
+        right: 30px;
+        cursor: pointer;
+    }
+    .nav-mob-close{
+        display: block;
+        position: relative;
+        top: 30px;
+        left:290px;
+        width: 30px;
+        cursor: pointer;
+    }
+    .nav-menu{
+        position: fixed;
+        flex-direction: column;
+        align-items: start;
+        top: 0;
+        gap: 30px;
+        background-color: #1F0016;
+        width: 350px;
+        height: 100%;
+        z-index: 2;
+        transition: right 0.5s;
+        right: -350px;
+    }
+    .nav-menu li{
+        font-size: 20px;
+        padding-left: 100px;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .logo{
+        margin: 0;
+        padding: 0;
+        width: 200px;
+        height: auto;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 375px){
+    .navbar{
+        padding: 0 20px;
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        margin: 0;
+    }
+    .nav-connect{
+        display: none;
+    }
+    .nav-mob-open{
+        display: block;
+        position: fixed;
+        right: 30px;
+        cursor: pointer;
+        width: 20px;
+    }
+    .nav-mob-close{
+        display: block;
+        position: relative;
+        top: 30px;
+        left:290px;
+        width: 15px;
+        cursor: pointer;
+    }
+    .nav-menu{
+        position: fixed;
+        flex-direction: column;
+        align-items: start;
+        top: 0;
+        gap: 30px;
+        background-color: #1F0016;
+        width: 350px;
+        height: 100%;
+        z-index: 2;
+        transition: right 0.5s;
+        right: -350px;
+    }
+    .nav-menu li{
+        font-size: 20px;
+        padding-left: 100px;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .logo{
+        margin: 0;
+        padding: 0;
+        width: 150px;
+        height: auto;
+        object-fit: cover;
+    }
+    .nav-menu a:hover {
+        background: linear-gradient(270deg , #DF8908 10%, #B415FF 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: 0.5s;
+        /* transform: scale(1.2); */
+    }
+}
+
+@media (max-width: 425px){
+    .navbar{
+        padding: 0 20px;
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        margin: 0;
+    }
+    .nav-connect{
+        display: none;
+    }
+    .nav-mob-open{
+        display: block;
+        position: fixed;
+        right: 30px;
+        cursor: pointer;
+        width: 20px;
+    }
+    .nav-mob-close{
+        display: block;
+        position: relative;
+        top: 30px;
+        left:290px;
+        width: 15px;
+        cursor: pointer;
+    }
+    .nav-menu{
+        position: fixed;
+        flex-direction: column;
+        align-items: start;
+        top: 0;
+        gap: 30px;
+        background-color: #1F0016;
+        width: 350px;
+        height: 100%;
+        z-index: 2;
+        transition: right 0.5s;
+        right: -350px;
+    }
+    .nav-menu li{
+        font-size: 20px;
+        padding-left: 100px;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .logo{
+        margin: 0;
+        padding: 0;
+        width: 150px;
+        height: auto;
+        object-fit: cover; 
+    }
+    .nav-menu a:hover {
+        background: linear-gradient(270deg , #DF8908 10%, #B415FF 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: 0.5s;
+        /* transform: scale(1.2); */
+    }
+}
+
+@media (max-width: 500px){
+    .navbar{
+        padding: 0 20px;
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        margin: 0;
+    }
+    .nav-connect{
+        display: none;
+    }
+    .nav-mob-open{
+        display: block;
+        position: fixed;
+        right: 30px;
+        cursor: pointer;
+        width: 20px;
+    }
+    .nav-mob-close{
+        display: block;
+        position: relative;
+        top: 30px;
+        left:290px;
+        width: 15px;
+        cursor: pointer;
+    }
+    .nav-menu{
+        position: fixed;
+        flex-direction: column;
+        align-items: start;
+        top: 0;
+        gap: 30px;
+        background-color: #1F0016;
+        width: 350px;
+        height: 100%;
+        z-index: 2;
+        transition: right 0.5s;
+        right: -350px;
+    }
+    .nav-menu li{
+        font-size: 20px;
+        padding-left: 100px;
+        flex-direction: row;
+        gap: 20px; 
+    }
+    .logo{
+        margin: 0;
+        padding: 0;
+        width: 150px;
+        height: auto;
+        object-fit: cover; 
+    }
+}
