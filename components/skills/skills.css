@@ -1,0 +1,108 @@
+
+#skills {
+  position: relative;
+  overflow: hidden;
+}
+#skills-canvas {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.skills-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  position: relative;
+  z-index: 10;
+}
+.skill-pill {
+  width: 240px;
+  height: 380px;
+  border-radius: 120px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: default;
+}
+.skill-pill:hover {
+  background: rgba(30, 30, 30, 0.9);
+  border-color: rgba(255, 107, 43, 0.4);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 40px rgba(255, 107, 43, 0.05);
+}
+.pill-inner {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.skill-pill:hover .pill-inner {
+  transform: translateY(-60px);
+}
+.pill-icon {
+  font-size: 4rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1.5rem;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+@keyframes icon-float {
+  0%, 100% { transform: translateY(0) scale(1.1); }
+  50% { transform: translateY(-10px) scale(1.1); }
+}
+.skill-pill:hover .pill-icon {
+  color: var(--accent-color);
+  animation: icon-float 3s infinite ease-in-out;
+  filter: drop-shadow(0 0 15px var(--accent-glow));
+}
+.skill-pill h3 {
+  font-size: 1.2rem;
+  color: var(--text-main);
+  text-align: center;
+  transition: color 0.3s;
+}
+.skill-pill:hover h3 {
+  color: var(--accent-color);
+}
+.pill-chips {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+.skill-pill:hover .pill-chips {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.pill-chip {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: 0.3s;
+}
+.pill-chip:hover {
+  background: rgba(255, 107, 43, 0.15);
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
