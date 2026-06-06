@@ -1,10 +1,12 @@
 
 export function initNavbar() {
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) navbar.classList.add('scrolled');
-      else navbar.classList.remove('scrolled');
-    });
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) navbar.classList.add('scrolled');
+          else navbar.classList.remove('scrolled');
+        });
+    }
 
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -17,7 +19,7 @@ export function initNavbar() {
     const navItems = document.querySelectorAll('.nav-links a');
     navItems.forEach(item => {
       item.addEventListener('click', () => {
-        navLinks.classList.remove('active');
+        if (navLinks) navLinks.classList.remove('active');
       });
     });
 }

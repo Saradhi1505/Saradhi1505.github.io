@@ -3,9 +3,18 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160/build/three.mod
 
 // Dynamically load HTML components
 async function loadComponent(id, path) {
-    const response = await fetch(path);
-    const html = await response.text();
-    document.getElementById(id).innerHTML = html;
+  const hostEl = document.getElementById(id);
+  if (!hostEl) {
+    throw new Error(`Placeholder element not found: #${id}`);
+  }
+
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Failed to load ${path} (${response.status} ${response.statusText})`);
+  }
+
+  const html = await response.text();
+  hostEl.innerHTML = html;
 }
 
 const activeScenes = { hero: true, about: false, skills: false };
@@ -17,6 +26,7 @@ const sharedContext = {
 };
 
 async function init() {
+  try {
     // Load HTML
     await loadComponent('navbar-placeholder', 'components/navbar/navbar.html');
     await loadComponent('hero-placeholder', 'components/hero/hero.html');
@@ -41,6 +51,10 @@ async function init() {
     initHero(activeScenes, isMobile, sharedContext);
     initAbout(activeScenes, sharedContext);
     initSkills(activeScenes, sharedContext);
+  } catch (err) {
+    console.error('Portfolio init failed:', err);
+    return;
+  }
 
     // Fade-in animations
     const fadeElements = document.querySelectorAll('.fade-in');

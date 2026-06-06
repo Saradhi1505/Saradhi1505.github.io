@@ -20,7 +20,8 @@
 }
 .skill-pill {
   width: 240px;
-  height: 380px;
+  min-height: 360px;
+  height: auto;
   border-radius: 120px;
   background: var(--bg-card);
   border: 1px solid rgba(255,255,255,0.05);
@@ -49,7 +50,7 @@
   transform: translateY(-60px);
 }
 .pill-icon {
-  font-size: 4rem;
+  font-size: 3rem;
   color: rgba(255,255,255,0.6);
   margin-bottom: 1.5rem;
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
@@ -96,7 +97,7 @@
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-secondary);
   padding: 0.4rem 0.8rem;
-  border-radius: 50px;
+  border-radius: 40px;
   font-size: 0.75rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: 0.3s;

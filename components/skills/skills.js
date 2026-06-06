@@ -5,6 +5,7 @@ export function initSkills(activeScenes, sharedContext) {
     const skillsCanvas = document.getElementById('skills-canvas');
     if (!skillsCanvas) return;
     const skillsSection = document.getElementById('skills');
+  if (!skillsSection) return;
     
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, skillsSection.clientWidth / skillsSection.clientHeight, 1, 1000);

@@ -5,6 +5,7 @@ export function initAbout(activeScenes, sharedContext) {
     const aboutCanvas = document.getElementById('about-canvas');
     if (!aboutCanvas) return;
     const aboutContainer = document.querySelector('.about-canvas-container');
+  if (!aboutContainer) return;
     
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, aboutContainer.clientWidth / aboutContainer.clientHeight, 0.1, 100);
