@@ -1,24 +1,30 @@
-import React from "react";
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./components/Home/Home";
-import About from "./components/About/About";
-import Services from "./components/Services/Services";
-import MyWorks from "./components/MyWorks/MyWork";
-import Contact from "./components/Contact/Contact";
-import Footer from "./components/Footer/Footer";
+import { ThemeProvider } from './context/ThemeContext';
+import { Navbar } from './components/sections/Navbar';
+import { Hero } from './components/sections/Hero';
+import { About } from './components/sections/About';
+import { Skills } from './components/sections/Skills';
+import { Projects } from './components/sections/Projects';
+import { Experience } from './components/sections/Experience';
+import { Education } from './components/sections/Education';
+import { Contact } from './components/sections/Contact';
+import { Footer } from './components/sections/Footer';
 
-const App = () => {
+export default function App() {
   return (
-    <div>
-      <Navbar/>
-      <Home/>
-      <About/>
-      <Services/>
-      <MyWorks/>
-      <Contact/>
-      <Footer/>
-    </div>
-  )
+    <ThemeProvider>
+      <div className="relative bg-surface text-ink min-h-screen">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Education />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
+  );
 }
-
-export default App

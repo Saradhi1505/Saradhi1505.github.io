@@ -1,10 +1,169 @@
-*{
-    margin: 0;
-    padding: 0;
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   THEME TOKENS
+   Warm, Claude-inspired palette. Dark mode is the default (applied on
+   :root); .light overrides. These are plain CSS custom properties
+   (not Tailwind classes) so that raw hex values are also available to
+   the SVG mountain-road path and the R3F starfield/orb materials,
+   which cannot consume Tailwind utility classes directly.
+   ------------------------------------------------------------------ */
+:root {
+  color-scheme: dark;
+
+  /* Backgrounds */
+  --color-bg: #211d1a;          /* deep warm charcoal */
+  --color-bg-elevated: #2a2521; /* card/panel surface */
+  --color-bg-soft: #332c27;     /* hover / subtle surface */
+
+  /* Text */
+  --color-text: #f3ede6;        /* warm off-white */
+  --color-text-muted: #b8ab9e;  /* secondary text */
+  --color-text-faint: #8a7d70;  /* tertiary / labels */
+
+  /* Accent - warm terracotta/clay */
+  --color-accent: #d97757;
+  --color-accent-hover: #e28b6d;
+  --color-accent-soft: #d977571a; /* 10% */
+  --color-accent-text: #2a1a12;   /* text on accent bg */
+
+  /* Borders */
+  --color-border: #3d3530;
+  --color-border-soft: #ffffff12;
+
+  /* Cosmic scene colors (raw hex for R3F/SVG use) */
+  --cosmic-star: #f3ede6;
+  --cosmic-star-dim: #8a7d70;
+  --cosmic-orb-a: #d97757;
+  --cosmic-orb-b: #e8a87c;
+  --cosmic-bg-fallback-1: #211d1a;
+  --cosmic-bg-fallback-2: #2e2620;
+
+  /* Education "mountain road" colors */
+  --road-line: #d97757;
+  --road-line-muted: #6b5d4f;
+  --road-terrain-a: #2a2521;
+  --road-terrain-b: #211d1a;
+
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.45);
 }
-body{
-    height: 100vh;
-    background: #161513;
-    color: white;
-    font-family: 'outfit';
+
+.light {
+  color-scheme: light;
+
+  --color-bg: #faf6f0;
+  --color-bg-elevated: #ffffff;
+  --color-bg-soft: #f1e9df;
+
+  --color-text: #2a2521;
+  --color-text-muted: #6b5d4f;
+  --color-text-faint: #948577;
+
+  --color-accent: #c1622f;
+  --color-accent-hover: #a85023;
+  --color-accent-soft: #c1622f14;
+  --color-accent-text: #fff8f2;
+
+  --color-border: #e6dccc;
+  --color-border-soft: #00000010;
+
+  --cosmic-star: #6b5d4f;
+  --cosmic-star-dim: #b8ab9e;
+  --cosmic-orb-a: #c1622f;
+  --cosmic-orb-b: #e8a87c;
+  --cosmic-bg-fallback-1: #f1e9df;
+  --cosmic-bg-fallback-2: #faf6f0;
+
+  --road-line: #c1622f;
+  --road-line-muted: #cbbca9;
+  --road-terrain-a: #f1e9df;
+  --road-terrain-b: #faf6f0;
+
+  --shadow-soft: 0 4px 24px rgba(60, 47, 34, 0.08);
+  --shadow-elevated: 0 8px 40px rgba(60, 47, 34, 0.12);
+}
+
+/* ------------------------------------------------------------------
+   Tailwind v4 theme mapping: expose CSS vars as Tailwind utilities
+   e.g. bg-surface, text-ink, border-hairline, text-clay
+   ------------------------------------------------------------------ */
+@theme inline {
+  --color-surface: var(--color-bg);
+  --color-surface-elevated: var(--color-bg-elevated);
+  --color-surface-soft: var(--color-bg-soft);
+
+  --color-ink: var(--color-text);
+  --color-ink-muted: var(--color-text-muted);
+  --color-ink-faint: var(--color-text-faint);
+
+  --color-clay: var(--color-accent);
+  --color-clay-hover: var(--color-accent-hover);
+  --color-clay-soft: var(--color-accent-soft);
+
+  --color-hairline: var(--color-border);
+
+  --font-display: "Fraunces", "Iowan Old Style", ui-serif, Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Focus visibility for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Custom scrollbar - subtle, warm */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-faint);
+}
+
+/* Static fallback for hero backdrop: used while the 3D scene lazy-loads,
+   and permanently if WebGL is unavailable / the scene errors / the user
+   has prefers-reduced-motion. Pure CSS, zero JS cost. */
+.cosmic-fallback {
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 30%, var(--cosmic-orb-a) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 70%, var(--cosmic-orb-b) 0%, transparent 55%),
+    linear-gradient(180deg, var(--cosmic-bg-fallback-1) 0%, var(--cosmic-bg-fallback-2) 100%);
+  opacity: 0.5;
 }
